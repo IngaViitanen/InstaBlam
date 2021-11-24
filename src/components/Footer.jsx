@@ -8,10 +8,19 @@ function footer() {
         
             <footer className="footer">
                 <div className="linkWrapper">
-                <Link to="/"><img src={homeLogo} alt="" height="40px" /></Link>
+                <Link to="/">
+                <div>
+                    <img src={homeLogo} alt="" height="40px" />
                 </div>
+                </Link>
+                </div>
+
                 <div className="linkWrapper">
-                <Link to="/gallery"><img src={galleryLogo} alt="" height="40px" /></Link>
+                <Link to="/gallery">
+                <div>
+                    <img src={galleryLogo} alt="" height="40px" />
+                </div>
+                </Link>
                 </div>
             </footer>
         
