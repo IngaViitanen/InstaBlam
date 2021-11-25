@@ -5,12 +5,13 @@ import Home from './pages/Home';
 import CameraPage from './pages/CameraPage';
 import Footer from './components/Footer';
 import Gallery from './pages/Gallery';
+import { ContextProvider } from './context/Context';
 
 function App() {
   return (
     <div className="App">
       <Router>
-        
+        <ContextProvider>
           <Routes>
           <Route path="/" exact element={<Home/>} />
           <Route path="/gallery" element={<Gallery/>} />
@@ -19,7 +20,7 @@ function App() {
         
        
         <Footer />
-       
+       </ContextProvider>
       </Router>
     </div>
   );

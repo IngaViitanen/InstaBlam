@@ -1,7 +1,10 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, useContext } from 'react'
 import '../../App.css'
+import { Context } from '../../context/Context'
 
 const Camera = () => {
+    const [context, updateContext] = useContext(Context)
+    // const newPhoto = context.takenPhoto
 	const [canUseMd, setCanUseMd] = useState(false)
 	const [statusMessage, setStatusMessage] = useState('')
 	const [cameraIsOn, setCameraIsOn] = useState(false)
@@ -16,6 +19,8 @@ const Camera = () => {
 		}
 	}
 
+    // let newPhoto;
+
     const takePhoto = () => {
         const width = 414
         const height = width / (16/9)
@@ -26,15 +31,29 @@ const Camera = () => {
         photo.width = width
         photo.height = height
 
-        let context = photo.getContext('2d')
-        context.drawImage(video, 0, 0, width, height)
-        setHasPhoto(true)
+        try{
+            let contextPhoto = photo.getContext('2d')
+            contextPhoto.drawImage(video, 0, 0, width, height)
+            
+            setHasPhoto(true)
+            let newPhoto = photo.toDataURL('image/png;base64')
+            console.log(newPhoto)
+            // localStorage.setItem('newData', JSON.stringify(newPhoto))
+            
+            return newPhoto
+        }catch(err){
+            console.log('something went wrong, ' + err.message)
+            return null
+        }
     }
 
+    
+    
+    
     const closePhoto = () => {
         let photo = photoRef.current
-        let context = photo.getContext('2d')
-        context.clearRect(0,0, photo.width, photo.height)
+        let contextPhoto = photo.getContext('2d')
+        contextPhoto.clearRect(0,0, photo.width, photo.height)
         setHasPhoto(false)
     }
 
@@ -47,13 +66,15 @@ const Camera = () => {
 		<div className="videoContainer">
 		{canUseMd ? <video ref={videoRef}></video> : null}
 			<div>
-				<button onClick={handleCameraToggle}>
+				<button className="onOffButton" onClick={handleCameraToggle}>
 				{cameraIsOn ? 'Turn camera off' : 'Turn camera on'}
 				</button>
                 <button className="cameraButton" onClick={takePhoto}>Take picture</button>
 			</div>
             <div className={'result ' + (hasPhoto ? 'hasPhoto' : '')}>
                 <canvas ref={photoRef}></canvas>
+                
+                
                 <button className="cameraButton" onClick={closePhoto}>CLOSE</button>
             </div>
 			<p> {statusMessage} </p>
@@ -78,7 +99,7 @@ async function cameraOn(videoElement, showMessage, whenDone) {
 		})
 	} catch(error) {
 		console.log('Could not use camera: ', error.message);
-		showMessage('Sorry, could not use your camera. Did you give me permission? Check that that you are not already using your camera in another app.')
+		showMessage('Sorry, could not use your camera. Did you give me permission? If you did, check that you are not using your camera on another app or page')
 	}
 }
 
