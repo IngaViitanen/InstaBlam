@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef, useContext } from 'react'
 import '../../App.css'
 import { Context } from '../../context/Context'
+import Photo from './Photo'
+import PublishPhoto from '../gallery/PublishPhoto'
 
 const Camera = () => {
     const [context, updateContext] = useContext(Context)
@@ -21,7 +23,7 @@ const Camera = () => {
 
     // let newPhoto;
 
-    const takePhoto = () => {
+    async function takePhoto() {
         const width = 414
         const height = width / (16/9)
 
@@ -31,15 +33,26 @@ const Camera = () => {
         photo.width = width
         photo.height = height
 
+        // let newPhoto = context.takenPhoto
+		// console.log(context.takenPhoto)
+
         try{
             let contextPhoto = photo.getContext('2d')
             contextPhoto.drawImage(video, 0, 0, width, height)
             
             setHasPhoto(true)
-            let newPhoto = photo.toDataURL('image/png;base64')
+			let newPhoto = context.takenPhoto
+            newPhoto = photo.toDataURL({type: 'image/png;base64'})
+			console.log(context.takenPhoto)
             console.log(newPhoto)
-            // localStorage.setItem('newData', JSON.stringify(newPhoto))
+			
+			if(newPhoto){
+				updateContext({
+					takenPhoto: newPhoto
+				})
+			}
             
+            // localStorage.setItem(`newData`, `base64${newPhoto}`)
             return newPhoto
         }catch(err){
             console.log('something went wrong, ' + err.message)
@@ -64,6 +77,7 @@ const Camera = () => {
 
 	return (
 		<div className="videoContainer">
+		
 		{canUseMd ? <video ref={videoRef}></video> : null}
 			<div>
 				<button className="onOffButton" onClick={handleCameraToggle}>
@@ -72,10 +86,10 @@ const Camera = () => {
                 <button className="cameraButton" onClick={takePhoto}>Take picture</button>
 			</div>
             <div className={'result ' + (hasPhoto ? 'hasPhoto' : '')}>
+				
                 <canvas ref={photoRef}></canvas>
-                
-                
                 <button className="cameraButton" onClick={closePhoto}>CLOSE</button>
+				<PublishPhoto />
             </div>
 			<p> {statusMessage} </p>
 		</div>

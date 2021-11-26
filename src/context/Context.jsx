@@ -10,15 +10,13 @@ export const ContextProvider = ({children}) => {
             id: 1,
             src: photoExample,
             alt: 'home logo',
-            date: new Date().toLocaleDateString(),
-            description: 'example  desc'
+            date: new Date().toLocaleDateString()
         }, 
         {
             id: 2,
             src: photoExample2,
             alt: 'logo',
-            date: new Date().toLocaleDateString(),
-            description: 'example  desc 2'
+            date: new Date().toLocaleDateString()
         }
     ] 
 })
