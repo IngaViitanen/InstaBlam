@@ -1,5 +1,6 @@
 import React from 'react'
 import Camera from '../components/camera/Camera'
+import Location from '../components/location/Location'
 import { ContextProvider } from '../context/Context'
 
 function CameraPage() {
@@ -10,6 +11,7 @@ function CameraPage() {
             <ContextProvider>
             <h1>Camera</h1>
             <Camera />
+            
             </ContextProvider>
         </div>
     )

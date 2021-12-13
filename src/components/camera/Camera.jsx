@@ -1,18 +1,20 @@
 import { useState, useEffect, useRef, useContext } from 'react'
 import '../../App.css'
 import { Context } from '../../context/Context'
-import Photo from './Photo'
 import PublishPhoto from '../gallery/PublishPhoto'
+import Location from '../location/Location'
 
 const Camera = () => {
     const [context, updateContext] = useContext(Context)
-    // const newPhoto = context.takenPhoto
 	const [canUseMd, setCanUseMd] = useState(false)
 	const [statusMessage, setStatusMessage] = useState('')
 	const [cameraIsOn, setCameraIsOn] = useState(false)
+	// const [photoUrl, setPhotoUrl] = useState('')
     const photoRef = useRef(null)
 	const videoRef = useRef(null)
     const [hasPhoto, setHasPhoto] = useState(false)
+	const [saveLocation, setSaveLocation] = useState('')
+	
 	const handleCameraToggle = () => {
 		if( cameraIsOn ) {
 			cameraOff(videoRef.current, () => setCameraIsOn(false))
@@ -21,7 +23,26 @@ const Camera = () => {
 		}
 	}
 
-    // let newPhoto;
+	useEffect(() => {
+		let getLocation = localStorage.getItem('location')
+		let locationData = JSON.parse(getLocation)
+		// let locationData = context.location
+		setSaveLocation(locationData)
+		console.log('locationData', locationData)
+
+		let getStorage = localStorage.getItem('instaBlamData')
+		let galleryData = JSON.parse(getStorage)
+		if(galleryData){
+			updateContext({location: galleryData})
+		}else{
+			console.log('galleryData missing')
+		}
+
+		if('mediaDevices' in navigator){
+			setCanUseMd( 'mediaDevices' in navigator )
+		}
+	}, [])
+
 
     async function takePhoto() {
         const width = 414
@@ -33,35 +54,35 @@ const Camera = () => {
         photo.width = width
         photo.height = height
 
-        // let newPhoto = context.takenPhoto
-		// console.log(context.takenPhoto)
-
         try{
             let contextPhoto = photo.getContext('2d')
             contextPhoto.drawImage(video, 0, 0, width, height)
             
-            setHasPhoto(true)
-			let newPhoto = context.takenPhoto
-            newPhoto = photo.toDataURL({type: 'image/png;base64'})
-			console.log(context.takenPhoto)
+			// let newPhoto = context.takenPhoto
+            let newPhoto = photo.toDataURL({type: 'image/png;base64'})
+			
             console.log(newPhoto)
 			
-			if(newPhoto){
-				updateContext({
-					takenPhoto: newPhoto
-				})
-			}
-            
-            // localStorage.setItem(`newData`, `base64${newPhoto}`)
+			
+			updateContext({
+				takenPhoto: newPhoto,
+				location: saveLocation
+			})
+			
+			setHasPhoto(true)
+
             return newPhoto
+
         }catch(err){
             console.log('something went wrong, ' + err.message)
             return null
         }
     }
 
-    
-    
+	// useEffect(() => {
+	// 	localStorage.setItem('instaBlamData', JSON.stringify(context))
+	// }, [context.takenPhoto])
+
     
     const closePhoto = () => {
         let photo = photoRef.current
@@ -70,10 +91,6 @@ const Camera = () => {
         setHasPhoto(false)
     }
 
-	useEffect(() => {
-		// Körs en gång, när komponenten blir mounted
-		setCanUseMd( 'mediaDevices' in navigator )
-	}, [])
 
 	return (
 		<div className="videoContainer">
@@ -88,7 +105,15 @@ const Camera = () => {
             <div className={'result ' + (hasPhoto ? 'hasPhoto' : '')}>
 				
                 <canvas ref={photoRef}></canvas>
-                <button className="cameraButton" onClick={closePhoto}>CLOSE</button>
+				
+                <button className="cameraButton" onClick={closePhoto}>GO BACK</button>
+				{/* {context.takenPhoto && (<PublishPhoto turnOff={() => { cameraOff(videoRef.current,
+							() => setCameraIsOn(false),
+							context,
+							updateContext)
+						}} /> )} */}
+				{/* <PublishPhoto /> */}
+				<Location />
 				<PublishPhoto />
             </div>
 			<p> {statusMessage} </p>

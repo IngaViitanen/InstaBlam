@@ -5,24 +5,29 @@ import photoExample2 from './charlieBrown.jpg'
 export const Context = createContext()
 
 export const ContextProvider = ({children}) => {
-    const [context, setContext] = useState({stream: null, takenPhoto: null, savedPhotos: [
+    const [context, setContext] = useState({ location: null, takenPhoto: null, savedPhotos: [
         {
             id: 1,
             src: photoExample,
             alt: 'home logo',
-            date: new Date().toLocaleDateString()
+            date: new Date().toLocaleDateString(),
+            desc: 'Snoopy',
+            location: 'unknown'
         }, 
         {
             id: 2,
             src: photoExample2,
             alt: 'logo',
-            date: new Date().toLocaleDateString()
+            date: new Date().toLocaleDateString(),
+            desc: 'Charlie Brown',
+            location: 'unknown'
+
         }
     ] 
 })
 
     useEffect(() => {
-        const localData = JSON.parse(localStorage.getItem('data'))
+        const localData = JSON.parse(localStorage.getItem('instaBlamData'))
         if (localData){
             setContext({
                 ...context,
@@ -32,7 +37,7 @@ export const ContextProvider = ({children}) => {
     }, [])
 
     useEffect(() => {
-        localStorage.setItem('data', JSON.stringify(context))
+        localStorage.setItem('instaBlamData', JSON.stringify(context))
     }, [context])
 
     function updateContext(update){

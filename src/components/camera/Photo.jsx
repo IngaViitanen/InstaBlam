@@ -1,14 +1,21 @@
-import React, {useContext} from 'react'
+import React from 'react'
+import { useNavigate } from 'react-router'
 import { Context } from '../../context/Context'
 
 function Photo() {
+    const navigate = useNavigate()
+    // const [context] = useContext(Context)
+    // const newPhoto = context.takenPhoto
+    // console.log(newPhoto)
 
-    const [context] = useContext(Context)
-    const photo = context.takenPhoto
+    const next = () => {
+        navigate('/SaveForm')
+    }
+
 
     return (
         <div>
-            <img src={photo} alt="your new pic"></img>
+           <button onClick={next}>SAVE</button>
         </div>
     )
 }

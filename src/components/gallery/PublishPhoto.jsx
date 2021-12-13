@@ -1,4 +1,4 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Context } from '../../context/Context'
 import { nanoid } from 'nanoid'
@@ -6,38 +6,55 @@ import { nanoid } from 'nanoid'
 function PublishPhoto() {
 
     const [context, updateContext] = useContext(Context)
+    // const [canUseGeo, setCanUseGeo] = useState(false)
     const navigate = useNavigate()
 
-    const onPublish = () => {
-        // e.preventDefault()
-
-        const takenPhoto = {
-            id: nanoid(),
-            src: context.takenPhoto,
-            date: new Date().toLocaleDateString(),
-            alt: 'new user photo'
-        }
-        console.log(takenPhoto)
-
-        const takenPhotoArr = [takenPhoto, ...context.savedPhotos]
-        console.log(takenPhotoArr)
-
-        if (context.takenPhoto){
-            updateContext({
-                savedPhotos: takenPhotoArr,
-                takenPhoto: null
-            })
-            navigate('/')
-        }
-        
+    
+    const takenPhoto = {
+        id: nanoid(),
+        src: context.takenPhoto,
+        date: new Date().toLocaleDateString(),
+        alt: 'new user photo',
+        location: null
     }
 
-
-    return (
-        <div onClick={onPublish}>
-            <button >Save photo to gallery</button>
-        </div>
-    )
+    // useEffect(() => {
+    //     updateContext({
+    //         savedPhotos: takenPhotoArr,
+    //         takenPhoto: null
+    //     })
+    // }, [context.savedPhotos])
+    
+    
+    const onPublish = () => {
+        
+        console.log(takenPhoto)
+        
+        // if(takenPhoto){
+            
+            const takenPhotoArr = [...context.savedPhotos, takenPhoto]
+            console.log(takenPhotoArr)
+            console.log('context.savedPhotos: ', ...context.savedPhotos)
+    
+        if(context.takenPhoto){
+            updateContext({
+            savedPhotos: takenPhotoArr,
+            takenPhoto: null
+            })
+        }
+                
+        navigate('/gallery')
+			
+	}
+        
+        
+         
+        return (
+            <div >
+                <button onClick={onPublish}>Save to gallery</button>
+            </div>
+        )
+    
 }
 
 export default PublishPhoto

@@ -1,31 +1,68 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Context } from '../context/Context'
 import PublishPhoto from '../components/gallery/PublishPhoto'
-// import exphoto from '../context/snoopy.jpeg'
+// import { deletePhoto, downloadPhoto } from '../components/gallery/GallerySpecs'
 
 function Gallery() {
 
-    const [context] = useContext(Context)
+    const [context, updateContext] = useContext(Context)
     const allPhotos = context.savedPhotos
-    const newPhotos = context.takenPhoto
-    console.log(newPhotos)
-    
     console.log(context.savedPhotos)
+    // const linkRef = useRef(null);
 
+	// function DeletePhoto() {
+	// 	deletePhoto(context, updateContext, key.id);
+	// }
 
-    // let base64Image = atob(Blob.text());
-    // const newData = localStorage.getItem('newData');
-    const newData = localStorage.getItem('data');
+    useEffect( () => {
+		let currentStorage = localStorage.getItem('instaBlamData')
+		let data = JSON.parse(currentStorage)
+		console.log('currentstorage data', data)
+
+		if (data !== null || undefined) {
+			updateContext(data)
+		} else {
+			localStorage.setItem('instaBlamData', JSON.stringify(context))
+		} 
+	
+	}, [])
+
+    // useEffect(() => {
+    //     localStorage.removeItem('instaBlamData', JSON.stringify(context))
+    // }, [deleteImg])
+
+    function deleteImg(imgIndex){
+        console.log(imgIndex)
+        let galleryArray = [...context.savedPhotos]
+        let index = imgIndex
+        console.log('index', index)
+        galleryArray.splice(index, 1)
+        console.log('gallery array', galleryArray)
+        // localStorage.removeItem('instaBlamData', JSON.stringify(context, index))
+        updateContext(context.savedPhotos)
+    }
+
+	// function download() {
+	// 	downloadPhoto(src, linkRef);
+	// }
+
     
-
     return (
         <div>
             <h1>Gallery</h1>
-            {allPhotos.map((img) => (
-                <img src={( `${img.src}` )} alt={img.alt} key={img.id} height="100px" />
-            ))}
-           <img src={`data:image/png;base64${newData}`} alt="taken by user" height="100px"/>
-           {/* <PublishPhoto /> */}
+            
+            {allPhotos.map((img, index) => {
+            return  <div>
+                    <button onClick={() => deleteImg(index)}>DELETE</button>
+                    <img src={( `${img.src}` )} alt={img.alt} key={img.id} height="100px" />
+                    <p>Date: {img.date}</p>
+                    <p>Location: {img.location}</p>
+                    </div>
+            })}
+            {/* {allPhotos.map((img) => ( */}
+                {/* ))} */}
+           
+            <PublishPhoto />
         </div>
     )
 }

@@ -6,6 +6,8 @@ import CameraPage from './pages/CameraPage';
 import Footer from './components/Footer';
 import Gallery from './pages/Gallery';
 import { ContextProvider } from './context/Context';
+import SaveForm from './pages/SaveForm';
+// import Location from './components/location/Location';
 
 function App() {
   return (
@@ -16,6 +18,8 @@ function App() {
           <Route path="/" exact element={<Home/>} />
           <Route path="/gallery" element={<Gallery/>} />
           <Route path="/camera" element={<CameraPage/>} />
+          <Route path="/SaveForm" element={<SaveForm/>} />
+          {/* <Route path="/location" element={<Location/>} /> */}
           </Routes>
         
        
