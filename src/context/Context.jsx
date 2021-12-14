@@ -12,7 +12,7 @@ export const ContextProvider = ({children}) => {
             alt: 'home logo',
             date: new Date().toLocaleDateString(),
             desc: 'Snoopy',
-            location: 'unknown'
+            location: {getLocation: 'unknown'}
         }, 
         {
             id: 2,
@@ -20,7 +20,7 @@ export const ContextProvider = ({children}) => {
             alt: 'logo',
             date: new Date().toLocaleDateString(),
             desc: 'Charlie Brown',
-            location: 'unknown'
+            location: {getLocation: 'unknown'}
 
         }
     ] 

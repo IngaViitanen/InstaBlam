@@ -15,7 +15,7 @@ function PublishPhoto() {
         src: context.takenPhoto,
         date: new Date().toLocaleDateString(),
         alt: 'new user photo',
-        location: null
+        location: context.location
     }
 
     // useEffect(() => {
@@ -36,12 +36,12 @@ function PublishPhoto() {
             console.log(takenPhotoArr)
             console.log('context.savedPhotos: ', ...context.savedPhotos)
     
-        if(context.takenPhoto){
+        // if(context.takenPhoto){
             updateContext({
             savedPhotos: takenPhotoArr,
             takenPhoto: null
             })
-        }
+        // }
                 
         navigate('/gallery')
 			

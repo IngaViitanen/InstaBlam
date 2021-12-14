@@ -3,12 +3,14 @@ import { Context } from '../../context/Context'
 
 function Location() {
 	
-    const [getLocation, setGetLocation] = useState('location unknown')
+    const [getLocation, setGetLocation] = useState(null)
     const [context, updateContext] = useContext(Context)
     let saveLocation = context.location
     console.log(saveLocation)
     // const [canUse, setCanUse] = useState(false)
     // const [pos, setPos] = useState(null)
+
+   
 
 	useEffect(() => {
         if ("geolocation" in navigator) {
@@ -20,7 +22,7 @@ function Location() {
                     console.log('position', pos)
                     onSuccess(pos, setGetLocation, getLocation)
                     updateContext({
-                    location: setGetLocation(getLocation.city)
+                    location: setGetLocation(`${getLocation}`)
                     })
                     // console.log('update', )
                 
@@ -36,16 +38,10 @@ function Location() {
     }, [])
 
 	// useEffect(() => {
-    //     updateContext({
-    //         location: setGetLocation(newLocation.city)
-    //     })
-	// }, [onSuccess])
-
-    // updateContext({
-    //     location: setGetLocation(newLocation.country, newLocation.city)
-    // })
-
-	
+    //     if(getLocation !== null){
+    //         setGetLocation(`${getLocation}`)
+    //     }
+    // }, [onSuccess])
 
 	return (
 		<div>
@@ -58,15 +54,13 @@ async function onSuccess(pos, setGetLocation, getLocation) {
 	const location = await getPosition(pos.coords.latitude, pos.coords.longitude)
 	
 		if( location ) {
-			console.log('LOCATION: ', location)
-            console.log('city', location.city, 'country', location.country)
-			setGetLocation(location.city)
-            // setGetLocation({
-                // country: location.country,
-                // city: location.city
-            // })
+			// console.log('LOCATION: ', location)
+            console.log(`city: ${location.city} country: ${location.country}`)
+			// setGetLocation(location.city, location.country)
+            setGetLocation(`city: ${location.city}, country: ${location.country}`)
 			localStorage.setItem('location', JSON.stringify({getLocation: getLocation}))
-            console.log(getLocation)
+            console.log({getLocation: getLocation})
+            console.log('getLocation', getLocation)
             
 		} else {
             console.log('adress missing')
@@ -82,14 +76,14 @@ async function getPosition(lat, lon) {
 		// console.log('data', data)
 
 		if( data.error ){
-			console.log('We could not get your position.', data.error.message)
+			console.log('There was an error: ', data.error.message)
 			return null
 		} else {
 			const locationData = data.features[0].properties
 			return locationData
 		}
 	} catch(error){
-		console.log('Could not get position because; ', error.message)
+		console.log('Sorry we could not get your position: ', error.message)
 		return null
 	}
 }
