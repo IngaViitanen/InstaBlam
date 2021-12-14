@@ -11,7 +11,6 @@ function CameraPage() {
             <ContextProvider>
             <h1>Camera</h1>
             <Camera />
-            
             </ContextProvider>
         </div>
     )

@@ -3,7 +3,7 @@ import { Context } from '../../context/Context'
 
 function Location() {
 	
-    const [getLocation, setGetLocation] = useState(null)
+    const [getLocation, setGetLocation] = useState('unknown')
     const [context, updateContext] = useContext(Context)
     let saveLocation = context.location
     console.log(saveLocation)
@@ -19,19 +19,15 @@ function Location() {
             navigator.geolocation.getCurrentPosition( pos => { 
                     // setPos(pos.coords);
                     // setCanUse(true) 
-                    console.log('position', pos)
                     onSuccess(pos, setGetLocation, getLocation)
                     updateContext({
                     location: setGetLocation(`${getLocation}`)
                     })
-                    // console.log('update', )
                 
                 }, error => {
                     console.log(error.message)
                     localStorage.setItem('location', JSON.stringify({getLocation: 'unknown'}))
                 })
-                // console.log("Latitude is :", pos.coords.latitude);
-                // console.log("Longitude is :", pos.coords.longitude);
         } else {
             console.log("No location available");
         }
@@ -57,7 +53,7 @@ async function onSuccess(pos, setGetLocation, getLocation) {
 			// console.log('LOCATION: ', location)
             console.log(`city: ${location.city} country: ${location.country}`)
 			// setGetLocation(location.city, location.country)
-            setGetLocation(`city: ${location.city}, country: ${location.country}`)
+            setGetLocation(`${location.city}, ${location.country}`)
 			localStorage.setItem('location', JSON.stringify({getLocation: getLocation}))
             console.log({getLocation: getLocation})
             console.log('getLocation', getLocation)
@@ -70,10 +66,10 @@ async function onSuccess(pos, setGetLocation, getLocation) {
 
 async function getPosition(lat, lon) {
 	try{
-		const response = await fetch(`https://api.geoapify.com/v1/geocode/reverse?lat=${lat}&lon=${lon}&apiKey=45e7e4a19c20475eaf163157be54b5aa`)
+		const response = await fetch(`https://api.geoapify.com/v1/geocode/reverse?lat=${lat}&lon=${lon}&apiKey=fc8da077c40644d5be62e50ef583818d`)
 		const data = await response.json()
 
-		// console.log('data', data)
+		console.log('data', data)
 
 		if( data.error ){
 			console.log('There was an error: ', data.error.message)

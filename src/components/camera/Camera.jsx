@@ -54,34 +54,32 @@ const Camera = () => {
         photo.width = width
         photo.height = height
 
-        try{
-            let contextPhoto = photo.getContext('2d')
-            contextPhoto.drawImage(video, 0, 0, width, height)
-            
-			// let newPhoto = context.takenPhoto
-            let newPhoto = photo.toDataURL({type: 'image/png;base64'})
-			
-            console.log(newPhoto)
-			
-			
-			updateContext({
-				takenPhoto: newPhoto,
-				location: saveLocation
-			})
-			
-			setHasPhoto(true)
-
-            return newPhoto
-
-        }catch(err){
-            console.log('something went wrong, ' + err.message)
-            return null
-        }
+		// setTimeout(() => {
+			try{
+				let contextPhoto = photo.getContext('2d')
+				contextPhoto.drawImage(video, 0, 0, width, height)
+				
+				// let newPhoto = context.takenPhoto
+				let newPhoto = photo.toDataURL({type: 'image/png;base64'})
+				
+				console.log(newPhoto)
+				
+				
+				updateContext({
+					takenPhoto: newPhoto,
+					location: saveLocation
+				})
+				
+				setHasPhoto(true)
+	
+				return newPhoto
+	
+			}catch(err){
+				console.log('something went wrong, ' + err.message)
+				return null
+			}
+		// }, 3000);
     }
-
-	// useEffect(() => {
-	// 	localStorage.setItem('instaBlamData', JSON.stringify(context))
-	// }, [context.takenPhoto])
 
     
     const closePhoto = () => {
@@ -107,12 +105,6 @@ const Camera = () => {
                 <canvas ref={photoRef}></canvas>
 				
                 <button className="cameraButton" onClick={closePhoto}>GO BACK</button>
-				{/* {context.takenPhoto && (<PublishPhoto turnOff={() => { cameraOff(videoRef.current,
-							() => setCameraIsOn(false),
-							context,
-							updateContext)
-						}} /> )} */}
-				{/* <PublishPhoto /> */}
 				<Location />
 				<PublishPhoto />
             </div>

@@ -17,33 +17,25 @@ function PublishPhoto() {
         alt: 'new user photo',
         location: context.location
     }
-
-    // useEffect(() => {
-    //     updateContext({
-    //         savedPhotos: takenPhotoArr,
-    //         takenPhoto: null
-    //     })
-    // }, [context.savedPhotos])
     
     
     const onPublish = () => {
         
         console.log(takenPhoto)
-        
-        // if(takenPhoto){
             
-            const takenPhotoArr = [...context.savedPhotos, takenPhoto]
-            console.log(takenPhotoArr)
-            console.log('context.savedPhotos: ', ...context.savedPhotos)
+        const takenPhotoArr = [...context.savedPhotos, takenPhoto]
+        console.log(takenPhotoArr)
+        console.log('context.savedPhotos: ', ...context.savedPhotos)
     
         // if(context.takenPhoto){
             updateContext({
             savedPhotos: takenPhotoArr,
             takenPhoto: null
             })
+            
+            navigate('/gallery')
         // }
                 
-        navigate('/gallery')
 			
 	}
         

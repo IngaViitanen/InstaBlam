@@ -111,3 +111,42 @@ canvas{
   width: 100%;
   height: auto;
 }
+
+.gallery{
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.card{
+  background-color: #fff;
+  /* max-width: 300px; */
+  margin: 15px;
+}
+
+.deleteButton{
+  background-color: #9e1515;
+  color: #fff;
+  appearance: none;
+  border: none;
+  outline: none;
+  padding: 8px 16px;
+}
+
+a .downloadButton{
+  appearance: none;
+  border: none;
+  outline: none;
+  padding: 8px 16px;
+}
+
+.card-grid{
+  display: grid;
+  grid-template-columns: 200px;
+}
+
+.image-grid{
+
+}
