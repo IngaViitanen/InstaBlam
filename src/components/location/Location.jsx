@@ -33,12 +33,6 @@ function Location() {
         }
     }, [])
 
-	// useEffect(() => {
-    //     if(getLocation !== null){
-    //         setGetLocation(`${getLocation}`)
-    //     }
-    // }, [onSuccess])
-
 	return (
 		<div>
 			
@@ -46,43 +40,41 @@ function Location() {
 	)
 }
 
-async function onSuccess(pos, setGetLocation, getLocation) {
-	const location = await getPosition(pos.coords.latitude, pos.coords.longitude)
-	
-		if( location ) {
-			// console.log('LOCATION: ', location)
-            console.log(`city: ${location.city} country: ${location.country}`)
-			// setGetLocation(location.city, location.country)
-            setGetLocation(`${location.city}, ${location.country}`)
-			localStorage.setItem('location', JSON.stringify({getLocation: getLocation}))
-            console.log({getLocation: getLocation})
-            console.log('getLocation', getLocation)
-            
-		} else {
-            console.log('adress missing')
-			setGetLocation('location missing')
-		}
-    }
 
-async function getPosition(lat, lon) {
-	try{
-		const response = await fetch(`https://api.geoapify.com/v1/geocode/reverse?lat=${lat}&lon=${lon}&apiKey=fc8da077c40644d5be62e50ef583818d`)
+async function lookupPosition(lat, lon) {
+    try{
+        const response = await fetch(`https://api.geoapify.com/v1/geocode/reverse?lat=${lat}&lon=${lon}&apiKey=fc8da077c40644d5be62e50ef583818d`)
 		const data = await response.json()
-
+        
 		console.log('data', data)
-
+        
 		if( data.error ){
-			console.log('There was an error: ', data.error.message)
+            console.log('There was an error: ', data.error.message)
 			return null
 		} else {
-			const locationData = data.features[0].properties
+            const locationData = data.features[0].properties
 			return locationData
 		}
 	} catch(error){
-		console.log('Sorry we could not get your position: ', error.message)
+        console.log('Sorry we could not get your position: ', error.message)
 		return null
 	}
 }
+
+async function onSuccess(pos, setGetLocation, getLocation) {
+    const location = await lookupPosition(pos.coords.latitude, pos.coords.longitude)
+    
+        if( location ) {
+            getLocation = `${location.city}, ${location.country}`
+            // setGetLocation(getLocation)
+            localStorage.setItem('location', JSON.stringify({getLocation: getLocation}))
+            console.log('getLocation', getLocation)
+            // console.log(`city: ${location.city} country: ${location.country}`) 
+        } else {
+            console.log('adress missing')
+            setGetLocation('location missing')
+        }
+    }
 
 
 export default Location

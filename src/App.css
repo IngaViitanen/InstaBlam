@@ -122,7 +122,6 @@ canvas{
 
 .card{
   background-color: #fff;
-  /* max-width: 300px; */
   margin: 15px;
 }
 
@@ -147,6 +146,6 @@ a .downloadButton{
   grid-template-columns: 200px;
 }
 
-.image-grid{
+/* .image-grid{
 
-}
+} */

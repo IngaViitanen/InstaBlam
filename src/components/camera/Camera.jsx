@@ -9,7 +9,7 @@ const Camera = () => {
 	const [canUseMd, setCanUseMd] = useState(false)
 	const [statusMessage, setStatusMessage] = useState('')
 	const [cameraIsOn, setCameraIsOn] = useState(false)
-	// const [photoUrl, setPhotoUrl] = useState('')
+	// const [counter, setCounter] = useState(3)
     const photoRef = useRef(null)
 	const videoRef = useRef(null)
     const [hasPhoto, setHasPhoto] = useState(false)
@@ -78,7 +78,7 @@ const Camera = () => {
 				console.log('something went wrong, ' + err.message)
 				return null
 			}
-		// }, 3000);
+		// }, 1000);
     }
 
     
