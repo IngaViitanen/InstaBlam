@@ -1,14 +1,14 @@
 
-self.addEventListener('install', event => {
+self.addEventListener('install', (event) => {
     console.log('Service worker: install')
     // Attempt to load cached files
 });
 
-self.addEventListener('activate', event => {
+self.addEventListener('activate', (event) => {
     console.log('SW activated at: ', new Date().toLocaleTimeString());
 })
 
-self.addEventListener('fetch', event => {
+self.addEventListener('fetch', (event) => {
     console.log('Service worker: fetch')
 	// Look for cached files and handle AJAX failures due to being offline
 });
