@@ -37,11 +37,13 @@ function Gallery() {
             {allPhotos.map((img, index) => {
             return  <div className='card'>
                     <div className='card-grid'>
+                    <div className='card-flex'>
                     <button onClick={() => deletePhoto(index)} className='deleteButton'>X</button>
-                    <img className='image-grid' src={( `${img.src}` )} alt={( `${img.alt}` )} key={img.id} height="100px" />
+                    <img className='imageStyle' src={( `${img.src}` )} alt={( `${img.alt}` )} key={img.id} height="100px" />
                     <p>Date: {img.date}</p>
                     <p>Location: {(`${img.location.getLocation}`)}</p>
                     <a href={img.src} download ><button className='downloadButton'>DOWNLOAD</button></a>
+                    </div>
                     </div>
                     </div>
             })}

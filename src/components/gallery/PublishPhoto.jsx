@@ -23,13 +23,13 @@ function PublishPhoto() {
         
         console.log(takenPhoto)
             
-        const takenPhotoArr = [...context.savedPhotos, takenPhoto]
-        console.log(takenPhotoArr)
+        const takenPhotoArray = [...context.savedPhotos, takenPhoto]
+        console.log(takenPhotoArray)
         console.log('context.savedPhotos: ', ...context.savedPhotos)
     
-        // if(context.takenPhoto){
+        // if(context.takenPhoto !== null){
             updateContext({
-            savedPhotos: takenPhotoArr,
+            savedPhotos: takenPhotoArray,
             takenPhoto: null
             })
             

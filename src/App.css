@@ -162,6 +162,8 @@ canvas{
   border: none;
   outline: none;
   padding: 8px 16px;
+  align-self: flex-end;
+  margin: 2px;
 }
 
 a .downloadButton{
@@ -169,6 +171,7 @@ a .downloadButton{
   border: none;
   outline: none;
   padding: 8px 16px;
+  margin: 2px;
 }
 
 .card-grid{
@@ -176,6 +179,13 @@ a .downloadButton{
   grid-template-columns: 200px;
 }
 
-/* .image-grid{
+.card-flex{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
-} */
+.imageStyle{
+  border: 5px solid red;
+}
