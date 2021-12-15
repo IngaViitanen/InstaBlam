@@ -14,6 +14,8 @@ const Camera = () => {
 	const videoRef = useRef(null)
     const [hasPhoto, setHasPhoto] = useState(false)
 	const [saveLocation, setSaveLocation] = useState('')
+
+	
 	
 	const handleCameraToggle = () => {
 		if( cameraIsOn ) {
@@ -30,8 +32,8 @@ const Camera = () => {
 		setSaveLocation(locationData)
 		console.log('locationData', locationData)
 
-		let getStorage = localStorage.getItem('instaBlamData')
-		let galleryData = JSON.parse(getStorage)
+		let getInstablamData = localStorage.getItem('instaBlamData')
+		let galleryData = JSON.parse(getInstablamData)
 		if(galleryData){
 			updateContext({location: galleryData})
 		}else{
