@@ -2,6 +2,8 @@
 
 body{
   background-color: #5f9ea0;
+  /* max-width: 800px;
+  margin-left: 250px; */
 }
 
 .App {
@@ -54,7 +56,7 @@ a{
 video{
   width: 100%;
   max-width: 100%;
-  height: auto;
+  height: 100%;
   object-fit: cover;
   object-position: center center;
 }
@@ -75,12 +77,40 @@ video{
 
 .result.hasPhoto{
   left: 0;
+  /* max-width: 50%; */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.saveToGalleryButton{
+  /* background-color: #9797ff;
+  color: #fff; */
+  /* appearance: none;
+  border: none;
+  outline: none;
+  padding: 8px 16px;
+  margin: 10px; */
+
+  position: absolute;
+  bottom: 100px;
+  right: 20px;
+
+  appearance: none;
+  border: none;
+  outline: none;
+
+  padding: 8px 16px;
+  
+  background-position: 0%;
+  background-size: 200%;
 }
 
 .cameraButton{
   position: absolute;
-  bottom: 100px;
-  left: 20px;
+  bottom: 140px;
+  right: 20px;
 
   appearance: none;
   border: none;

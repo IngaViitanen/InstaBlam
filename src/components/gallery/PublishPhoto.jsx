@@ -43,7 +43,7 @@ function PublishPhoto() {
          
         return (
             <div >
-                <button onClick={onPublish}>Save to gallery</button>
+                <button className='saveToGalleryButton' onClick={onPublish}>SAVE PHOTO</button>
             </div>
         )
     
