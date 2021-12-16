@@ -6,6 +6,7 @@ function Gallery() {
 
     const [context, updateContext] = useContext(Context)
     const allPhotos = context.savedPhotos
+    console.log('Gallery number of photos: ', allPhotos.length)
 
     useEffect(() => {
 		let gallery = localStorage.getItem('instaBlamData')

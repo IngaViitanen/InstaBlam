@@ -4,7 +4,7 @@ import { Context } from '../../context/Context'
 import PublishPhoto from '../gallery/PublishPhoto'
 import Location from '../location/Location'
 
-const Camera = () => {
+const Camera = ({onPublish}) => {
     const [context, updateContext] = useContext(Context)
 	const [canUseMd, setCanUseMd] = useState(false)
 	const [statusMessage, setStatusMessage] = useState('')
@@ -14,6 +14,7 @@ const Camera = () => {
 	const videoRef = useRef(null)
     const [hasPhoto, setHasPhoto] = useState(false)
 	const [saveLocation, setSaveLocation] = useState('')
+	const [takenPhoto, setTakenPhoto] = useState(null)
 
 	
 	
@@ -64,14 +65,14 @@ const Camera = () => {
 				// let newPhoto = context.takenPhoto
 				let newPhoto = photo.toDataURL({type: 'image/png;base64'})
 				
-				console.log(newPhoto)
-				
-				
+				//onPublish(newPhoto)
 				updateContext({
 					takenPhoto: newPhoto,
 					location: saveLocation
 				})
+				console.log('context is being updated')
 				
+				setTakenPhoto(newPhoto)
 				setHasPhoto(true)
 	
 				return newPhoto
@@ -108,7 +109,7 @@ const Camera = () => {
 				
                 <button className="cameraButton" onClick={closePhoto}>GO BACK</button>
 				<Location />
-				<PublishPhoto />
+				<PublishPhoto takenPhotoSrc={takenPhoto}/>
             </div>
 			<p> {statusMessage} </p>
 		</div>

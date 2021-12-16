@@ -1,9 +1,9 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { Context } from '../../context/Context'
 import { nanoid } from 'nanoid'
 
-function PublishPhoto() {
+function PublishPhoto({ takenPhotoSrc }) {
 
     const [context, updateContext] = useContext(Context)
     // const [canUseGeo, setCanUseGeo] = useState(false)
@@ -12,7 +12,7 @@ function PublishPhoto() {
     
     const takenPhoto = {
         id: nanoid(),
-        src: context.takenPhoto,
+        src: takenPhotoSrc,
         date: new Date().toLocaleDateString(),
         alt: 'new user photo',
         location: context.location
@@ -20,25 +20,25 @@ function PublishPhoto() {
     
     
     const onPublish = () => {
+        // console.log(takenPhoto)
         
-        console.log(takenPhoto)
-            
         const takenPhotoArray = [...context.savedPhotos, takenPhoto]
-        console.log(takenPhotoArray)
-        console.log('context.savedPhotos: ', ...context.savedPhotos)
-    
-        // if(context.takenPhoto !== null){
-            updateContext({
+        console.log('PublishPhoto: number of photos is ', takenPhotoArray.length)
+
+        // takePhoto(takenPhotoArray)
+        // console.log('takePhoto', takePhoto)
+        // console.log('context.savedPhotos: ', ...context.savedPhotos)
+        // if(takenPhoto !== null){
+        updateContext({
             savedPhotos: takenPhotoArray,
             takenPhoto: null
-            })
+        })
             
-            navigate('/gallery')
+        // navigate('/gallery')
         // }
-                
-			
 	}
         
+    
         
          
         return (
