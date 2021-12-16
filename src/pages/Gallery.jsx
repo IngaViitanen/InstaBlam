@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import { Context } from '../context/Context'
-import PublishPhoto from '../components/gallery/PublishPhoto'
+// import PublishPhoto from '../components/gallery/PublishPhoto'
 
 function Gallery() {
 
@@ -40,16 +40,24 @@ function Gallery() {
                     <div className='card-grid'>
                     <div className='card-flex'>
                     <button onClick={() => deletePhoto(index)} className='deleteButton'>X</button>
-                    <img className='imageStyle' src={( `${img.src}` )} alt={( `${img.alt}` )} key={img.id} height="100px" />
-                    <p>Date: {img.date}</p>
-                    <p>Location: {(`${img.location.getLocation}`)}</p>
+                    <img 
+                        className='imageStyle' 
+                        src={( `${img.src}` )} 
+                        alt={( `${img.alt}` )} 
+                        key={img.id} 
+                        height="100px" 
+                    />
+                    <div className='p-card-flex'>
+                    <p className='imgP'>Date: {img.date}</p>
+                    <p className='imgP'>Location: {(`${img.location.getLocation}`)}</p>
+                    </div>
                     <a href={img.src} download ><button className='downloadButton'>DOWNLOAD</button></a>
                     </div>
                     </div>
                     </div>
             })}
             </div> 
-            <PublishPhoto />
+            {/* <PublishPhoto /> */}
         </div>
     )
 }

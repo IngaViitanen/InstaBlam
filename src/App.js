@@ -10,16 +10,17 @@ import { ContextProvider } from './context/Context';
 function App() {
   return (
     <div className="App">
-      <Router>
-        <ContextProvider>
-          <Routes>
-          <Route path="/" exact element={<Home/>} />
-          <Route path="/gallery" element={<Gallery/>} />
-          <Route path="/camera" element={<CameraPage/>} />
-          </Routes>
+        <Router>
+            <ContextProvider>
+                <Routes>
+                    <Route path="/" exact element={<Home/>} />
+                    <Route path="/gallery" element={<Gallery/>} />
+                    <Route path="/camera" element={<CameraPage/>} />
+                </Routes>
       
-        <Footer />
-       </ContextProvider>
+            <Footer />
+
+            </ContextProvider>
       </Router>
     </div>
   );

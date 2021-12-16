@@ -7,9 +7,6 @@ function Location() {
     const [context, updateContext] = useContext(Context)
     let saveLocation = context.location
     console.log(saveLocation)
-    // const [canUse, setCanUse] = useState(false)
-    // const [pos, setPos] = useState(null)
-
    
 
 	useEffect(() => {
@@ -17,27 +14,29 @@ function Location() {
             console.log("location available")
     
             navigator.geolocation.getCurrentPosition( pos => { 
-                    // setPos(pos.coords);
-                    // setCanUse(true) 
+
                     onSuccess(pos, setGetLocation, getLocation)
+
                     updateContext({
                     location: setGetLocation(`${getLocation}`)
                     })
                 
-                }, error => {
+            }, error => {
                     console.log(error.message)
                     localStorage.setItem('location', JSON.stringify({getLocation: 'unknown'}))
-                })
-        } else {
+            })
+        }else {
             console.log("No location available");
         }
     }, [])
+
 
 	return (
 		<div>
 			
 		</div>
 	)
+
 }
 
 
@@ -51,7 +50,7 @@ async function lookupPosition(lat, lon) {
 		if( data.error ){
             console.log('There was an error: ', data.error.message)
 			return null
-		} else {
+		}else {
             const locationData = data.features[0].properties
 			return locationData
 		}

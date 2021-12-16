@@ -1,8 +1,5 @@
-
-//rfce
 import React from 'react'
 import { Link } from 'react-router-dom'
-// import './pages.css'
 import '../App.css';
 import cameraLogo from './add-photo.png'
 

@@ -11,14 +11,14 @@ export const ContextProvider = ({children}) => {
             src: photoExample,
             alt: 'home logo',
             date: new Date().toLocaleDateString(),
-            location: {getLocation: 'The doghouse on 1770 James Street'}
+            location: {getLocation: 'California'}
         }, 
         {
             id: 2,
             src: photoExample2,
             alt: 'logo',
             date: new Date().toLocaleDateString(),
-            location: {getLocation: '1770 James Street, California'}
+            location: {getLocation: 'California'}
 
         }
     ] 

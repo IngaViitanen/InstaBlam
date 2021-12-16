@@ -85,14 +85,6 @@ video{
 }
 
 .saveToGalleryButton{
-  /* background-color: #9797ff;
-  color: #fff; */
-  /* appearance: none;
-  border: none;
-  outline: none;
-  padding: 8px 16px;
-  margin: 10px; */
-
   position: absolute;
   bottom: 100px;
   right: 20px;
@@ -105,21 +97,27 @@ video{
   
   background-position: 0%;
   background-size: 200%;
+  cursor: pointer;
 }
 
 .cameraButton{
-  position: absolute;
-  bottom: 140px;
-  right: 20px;
+
+  margin-top: 380px;
+  
+
+  /* position: absolute; */
+  bottom: 100px;
 
   appearance: none;
-  border: none;
+  border: 4px solid black;
+  border-radius: 90px;
   outline: none;
 
-  padding: 8px 16px;
+  padding: 25px;
   
   background-position: 0%;
   background-size: 200%;
+  cursor: pointer;
 }
 
 .cameraButton:hover{
@@ -135,6 +133,7 @@ video{
   border: none;
   outline: none;
   padding: 8px 16px;
+  cursor: pointer;
 }
 
 canvas{
@@ -151,35 +150,60 @@ canvas{
 }
 
 .card{
-  background-color: #fff;
+  background-color: #000000;
   margin: 15px;
+  color: #fff;
+  border: none;
+  border-radius: 9px;
 }
 
 .deleteButton{
-  background-color: #9e1515;
+  background-color: #000000;
   color: #fff;
+  font-weight: 800;
   appearance: none;
   border: none;
-  outline: none;
-  padding: 8px 16px;
   align-self: flex-end;
-  margin: 2px;
+  margin-bottom: 10px;
+  margin-right: 15px;
+  cursor: pointer;
 }
 
 a .downloadButton{
   appearance: none;
   border: none;
+  border-radius: 2px;
   outline: none;
-  padding: 8px 16px;
-  margin: 2px;
+  padding: 6px 14px;
+  margin-top: 10px;
+  font-size: 0.8em;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+
+
+.imgP{
+  margin: 0.5rem;
+  text-align: left;
+}
+
+.p-card-flex{
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: flex-start;
+  margin-top: 10px;
+  padding: 0;
 }
 
 .card-grid{
-  display: grid;
-  grid-template-columns: 200px;
+  width: 210px;
+  height: 280px;
 }
 
 .card-flex{
+  margin-top: 15px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -187,5 +211,6 @@ a .downloadButton{
 }
 
 .imageStyle{
-  border: 5px solid red;
+  border: none;
+  border-radius: 2px;
 }

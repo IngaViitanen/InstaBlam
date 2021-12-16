@@ -4,7 +4,7 @@ import { Context } from '../../context/Context'
 import PublishPhoto from '../gallery/PublishPhoto'
 import Location from '../location/Location'
 
-const Camera = ({onPublish}) => {
+const Camera = () => {
     const [context, updateContext] = useContext(Context)
 	const [canUseMd, setCanUseMd] = useState(false)
 	const [statusMessage, setStatusMessage] = useState('')
@@ -29,7 +29,6 @@ const Camera = ({onPublish}) => {
 	useEffect(() => {
 		let getLocation = localStorage.getItem('location')
 		let locationData = JSON.parse(getLocation)
-		// let locationData = context.location
 		setSaveLocation(locationData)
 		console.log('locationData', locationData)
 
@@ -62,16 +61,15 @@ const Camera = ({onPublish}) => {
 				let contextPhoto = photo.getContext('2d')
 				contextPhoto.drawImage(video, 0, 0, width, height)
 				
-				// let newPhoto = context.takenPhoto
 				let newPhoto = photo.toDataURL({type: 'image/png;base64'})
 				
-				//onPublish(newPhoto)
 				updateContext({
 					takenPhoto: newPhoto,
 					location: saveLocation
 				})
 				console.log('context is being updated')
 				
+				//to be able to send taken photo with props to PublishPhoto.jsx
 				setTakenPhoto(newPhoto)
 				setHasPhoto(true)
 	
@@ -93,6 +91,7 @@ const Camera = ({onPublish}) => {
     }
 
 
+
 	return (
 		<div className="videoContainer">
 		
@@ -101,7 +100,7 @@ const Camera = ({onPublish}) => {
 				<button className="onOffButton" onClick={handleCameraToggle}>
 				{cameraIsOn ? 'Turn camera off' : 'Turn camera on'}
 				</button>
-                <button className="cameraButton" onClick={takePhoto}>Take picture</button>
+                <button className="cameraButton" onClick={takePhoto}></button>
 			</div>
             <div className={'result ' + (hasPhoto ? 'hasPhoto' : '')}>
 				
@@ -115,6 +114,8 @@ const Camera = ({onPublish}) => {
 		</div>
 	)
 }
+
+
 
 async function cameraOff(videoElement, whenDone) {
 	videoElement.srcObject = null
