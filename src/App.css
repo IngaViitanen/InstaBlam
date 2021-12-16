@@ -102,11 +102,11 @@ video{
 
 .cameraButton{
 
-  margin-top: 380px;
+  /* margin-top: 380px; */
   
 
-  /* position: absolute; */
-  bottom: 100px;
+  position: absolute;
+  bottom: 90px;
 
   appearance: none;
   border: 4px solid black;
