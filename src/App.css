@@ -77,12 +77,12 @@ video{
 
 .result.hasPhoto{
   left: 0;
-  /* max-width: 50%; */
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
 }
+
 
 .saveToGalleryButton{
   position: absolute;
@@ -91,6 +91,7 @@ video{
 
   appearance: none;
   border: none;
+  border-radius: 2px;
   outline: none;
 
   padding: 8px 16px;
@@ -100,27 +101,47 @@ video{
   cursor: pointer;
 }
 
-.cameraButton{
+.buttons-grid{
+  display: grid;
+  grid-template-columns: 1fr 68px 1fr;
+}
 
-  /* margin-top: 380px; */
-  
+.takePhotoButton{
+  background-color: transparent;
+  grid-column-start: 2;
 
   position: absolute;
   bottom: 90px;
 
   appearance: none;
-  border: 4px solid black;
+  border: 4px solid #fff;
   border-radius: 90px;
   outline: none;
 
-  padding: 25px;
+  padding: 30px;
   
   background-position: 0%;
   background-size: 200%;
   cursor: pointer;
 }
 
-.cameraButton:hover{
+.closePhotoButton{
+  position: absolute;
+  bottom: 90px;
+
+  appearance: none;
+  border: 4px solid #fff;
+  border-radius: 90px;
+  outline: none;
+
+  padding: 20px;
+  
+  background-position: 0%;
+  background-size: 200%;
+  cursor: pointer;
+}
+
+.takePhotoButton:hover{
   background-position: 100%;
 }
 
@@ -131,8 +152,10 @@ video{
 
   appearance: none;
   border: none;
+  border-radius: 2px;
   outline: none;
-  padding: 8px 16px;
+
+  padding: 8px 12px;
   cursor: pointer;
 }
 

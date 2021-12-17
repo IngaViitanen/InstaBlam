@@ -96,17 +96,24 @@ const Camera = () => {
 		<div className="videoContainer">
 		
 		{canUseMd ? <video ref={videoRef}></video> : null}
-			<div>
+			<div className='buttons-grid'>
 				<button className="onOffButton" onClick={handleCameraToggle}>
-				{cameraIsOn ? 'Turn camera off' : 'Turn camera on'}
+				{cameraIsOn ? 'OFF' : 'turn camera on'}
 				</button>
-                <button className="cameraButton" onClick={takePhoto}></button>
+
+				{
+				cameraIsOn ?  
+				<button 
+				className="takePhotoButton" 
+				onClick={takePhoto}>
+				</button> 
+				: null 
+				} 
+
 			</div>
             <div className={'result ' + (hasPhoto ? 'hasPhoto' : '')}>
-				
                 <canvas ref={photoRef}></canvas>
-				
-                <button className="cameraButton" onClick={closePhoto}>GO BACK</button>
+                <button className="closePhotoButton" onClick={closePhoto}>GO BACK</button>
 				<Location />
 				<PublishPhoto takenPhotoSrc={takenPhoto}/>
             </div>
