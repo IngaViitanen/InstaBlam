@@ -1,3 +1,5 @@
+// import { precacheAndRoute, createHandlerBoundToURL } from 'workbox-precaching';
+// precacheAndRoute(self.__WB_MANIFEST);
 
 self.addEventListener('install', (event) => {
     console.log('Service worker: install')
