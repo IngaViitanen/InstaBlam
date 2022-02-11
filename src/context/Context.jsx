@@ -5,7 +5,7 @@ import photoExample2 from './charlieBrown.jpg'
 export const Context = createContext()
 
 export const ContextProvider = ({children}) => {
-    const [context, setContext] = useState({ location: 'unknown', takenPhoto: null, savedPhotos: [
+    const [context, setContext] = useState({getLocation: 'unkown', location: 'unknown', takenPhoto: null, savedPhotos: [
         {
             id: 1,
             src: photoExample,

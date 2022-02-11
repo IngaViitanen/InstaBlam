@@ -2,8 +2,6 @@
 
 body{
   background-color: #5f9ea0;
-  /* max-width: 800px;
-  margin-left: 250px; */
 }
 
 .App {
@@ -71,6 +69,7 @@ video{
   height: 100%;
   display: flex;
   align-items: center;
+  object-fit: cover;
   background-color: rgba(0, 0, 0, 0.8);
   transition: 0.4s;
 }
@@ -81,6 +80,7 @@ video{
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  /* object-fit: cover; */
 }
 
 
@@ -204,7 +204,9 @@ a .downloadButton{
   cursor: pointer;
 }
 
-
+p{
+  font-size: 0.8rem;
+}
 
 .imgP{
   margin: 0.5rem;
@@ -222,7 +224,7 @@ a .downloadButton{
 
 .card-grid{
   width: 210px;
-  height: 280px;
+  height: 300px;
 }
 
 .card-flex{
@@ -237,3 +239,4 @@ a .downloadButton{
   border: none;
   border-radius: 2px;
 }
+

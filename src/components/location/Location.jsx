@@ -18,7 +18,8 @@ function Location() {
                     onSuccess(pos, setGetLocation, getLocation)
 
                     updateContext({
-                    location: setGetLocation(`${getLocation}`)
+                    // location: setGetLocation(`${getLocation}`)
+                    location: JSON.stringify(getLocation)
                     })
                 
             }, error => {
@@ -65,7 +66,7 @@ async function onSuccess(pos, setGetLocation, getLocation) {
     
         if( location ) {
             getLocation = `${location.city}, ${location.country}`
-            // setGetLocation(getLocation)
+            setGetLocation(getLocation)
             localStorage.setItem('location', JSON.stringify({getLocation: getLocation}))
             console.log('getLocation', getLocation)
             // console.log(`city: ${location.city} country: ${location.country}`) 

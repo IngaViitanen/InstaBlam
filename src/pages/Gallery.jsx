@@ -1,9 +1,9 @@
-import React, { useContext, useEffect } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Context } from '../context/Context'
 // import PublishPhoto from '../components/gallery/PublishPhoto'
 
 function Gallery() {
-
+    // const [location, setLocation] = useState(img.location.getLocation)
     const [context, updateContext] = useContext(Context)
     const allPhotos = context.savedPhotos
     console.log('Gallery number of photos: ', allPhotos.length)
@@ -45,7 +45,7 @@ function Gallery() {
                         src={( `${img.src}` )} 
                         alt={( `${img.alt}` )} 
                         key={img.id} 
-                        height="100px" 
+                        height="120px" 
                     />
                     <div className='p-card-flex'>
                     <p className='imgP'>Date: {img.date}</p>

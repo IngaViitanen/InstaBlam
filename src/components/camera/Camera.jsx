@@ -29,7 +29,11 @@ const Camera = () => {
 	useEffect(() => {
 		let getLocation = localStorage.getItem('location')
 		let locationData = JSON.parse(getLocation)
-		setSaveLocation(locationData)
+		if(locationData !== null || undefined){
+			setSaveLocation(locationData)
+		} else{
+			setSaveLocation('no location was found')
+		}
 		console.log('locationData', locationData)
 
 		let getInstablamData = localStorage.getItem('instaBlamData')
@@ -47,8 +51,8 @@ const Camera = () => {
 
 
     async function takePhoto() {
-        const width = 414
-        const height = width / (16/9)
+        const width = 640 //414
+        const height = 640 //width / (16/9)
 
         let video = videoRef.current
         let photo = photoRef.current
@@ -68,6 +72,7 @@ const Camera = () => {
 					location: saveLocation
 				})
 				console.log('context is being updated')
+				console.log(saveLocation)
 				
 				//to be able to send taken photo with props to PublishPhoto.jsx
 				setTakenPhoto(newPhoto)
@@ -130,7 +135,8 @@ async function cameraOff(videoElement, whenDone) {
 }
 async function cameraOn(videoElement, showMessage, whenDone) {
 	const constraints = {
-		video: { facingMode: 'user', width: 1980, height: 1080 }
+		video: { facingMode: 'user', width: 640, height: 640 }
+		//1920, 1080
 	}
 	try {
 		const stream = await navigator.mediaDevices.getUserMedia(constraints)
