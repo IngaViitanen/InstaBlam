@@ -15,6 +15,7 @@ const Camera = () => {
     const [hasPhoto, setHasPhoto] = useState(false)
 	const [saveLocation, setSaveLocation] = useState('')
 	const [takenPhoto, setTakenPhoto] = useState(null)
+	let getLocation = localStorage.getItem('location')
 
 	
 	
@@ -27,7 +28,7 @@ const Camera = () => {
 	}
 
 	useEffect(() => {
-		let getLocation = localStorage.getItem('location')
+		// let getLocation = localStorage.getItem('location')
 		let locationData = JSON.parse(getLocation)
 		if(locationData !== null || undefined){
 			setSaveLocation(locationData)
@@ -47,7 +48,7 @@ const Camera = () => {
 		if('mediaDevices' in navigator){
 			setCanUseMd( 'mediaDevices' in navigator )
 		}
-	}, [])
+	}, [getLocation])
 
 
     async function takePhoto() {
@@ -99,11 +100,6 @@ const Camera = () => {
 
 	return (
 		<div className="videoContainer">
-			{/* <div>
-			<Link to="/">
-			<button>{'<-- back to home page'}</button>
-			</Link>
-			</div> */}
 		
 		{canUseMd ? <video ref={videoRef}></video> : null}
 			<div className='buttons-grid'>
@@ -138,6 +134,7 @@ const Camera = () => {
 
 async function cameraOff(videoElement, whenDone) {
 	videoElement.srcObject = null
+	// console.log(videoElement.srcObject)
 	whenDone()
 }
 async function cameraOn(videoElement, showMessage, whenDone) {
@@ -151,6 +148,7 @@ async function cameraOn(videoElement, showMessage, whenDone) {
 		videoElement.addEventListener('loadedmetadata', () => {
 			videoElement.play()
 			whenDone()
+			console.log(stream)
 		})
 	} catch(error) {
 		console.log('Could not use camera: ', error.message);

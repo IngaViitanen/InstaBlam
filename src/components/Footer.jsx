@@ -7,7 +7,7 @@ function footer() {
         
             <footer className="footer">
                 <Link to="/camera" className="cameraPageTag">
-                    <img src={cameraLogo} alt="take new photo logo" height="50px"/>
+                    <img src={cameraLogo} alt="to camera logo" height="50px"/>
                 </Link>
             </footer>
         

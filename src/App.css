@@ -120,6 +120,7 @@ canvas{
   color: #fff;
   cursor: pointer;
   margin-left: 5em;
+  margin-top: 1em;
 }
 
 .saveToGalleryButton:hover{
@@ -164,6 +165,7 @@ canvas{
   background-position: 0%;
   background-size: 200%;
   cursor: pointer;
+  margin-top: 1em;
 }
 
 .closePhotoButton:hover{
@@ -186,6 +188,7 @@ canvas{
 
   padding: 8px 12px;
   cursor: pointer;
+  background-color: #fff;
 }
 
 /* camera page */
@@ -196,11 +199,27 @@ canvas{
   margin: 15px;
 }
 
+
 .backBtn{
   background-color: transparent;
   outline: none;
   border: none;
   color: #fff;
+}
+
+.backBtn:hover{
+  cursor: pointer;
+  color: #775bf3;
+}
+
+@media screen and (min-width: 668px) {
+  .backToHomePage{
+    margin-left: 30em;
+  }
+
+  .onOffButton{
+    margin-right: 35em;
+  }
 }
 
 /* gallery page */
@@ -265,7 +284,7 @@ p{
 .p-card-flex{
   display: flex;
   flex-direction: column;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: flex-start;
   margin-top: 10px;
   padding: 0;

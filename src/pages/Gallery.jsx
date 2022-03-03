@@ -1,9 +1,6 @@
 import React, { useContext, useEffect } from 'react'
 import { Context } from '../context/Context'
 import Footer from '../components/Footer'
-import cameraLogo from '../images/add-photo.png'
-import { Link } from 'react-router-dom'
-import Camera from '../components/camera/Camera'
 import download from '../images/download.png'
 import garbage from '../images/garbage.png'
 
@@ -38,10 +35,10 @@ function Gallery() {
     
     return (
         <div >
-            <h1>InstaBlam</h1>
+            <h1>instaBlam</h1>
             <div className='gallery'>
             {allPhotos.map((image, index) => {
-            return  <div className='card'>
+            return  <div key={image.id} className='card'>
                     <div className='card-grid'>
                     <div className='card-flex'>
                     <div className='delNdownBTN'>
@@ -56,6 +53,7 @@ function Gallery() {
                         className='deleteButton'
                         src={garbage}
                         height="20px"
+                        alt='garbage can'
                         />
                     </div>
                     <img 
@@ -74,8 +72,6 @@ function Gallery() {
                     </div>
             })}
             </div> 
-            {/* <Camera /> */}
-            {/* <Link to="/camera" className="cameraPageTag"><img src={cameraLogo} alt="take new photo logo" height="80px"/></Link> */}
             <Footer />
         </div>
     )

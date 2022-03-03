@@ -30,7 +30,7 @@ function PublishPhoto({ takenPhotoSrc }) {
          
         return (
             <div >
-                <button className='saveToGalleryButton' onClick={onPublish}>SAVE TO GALLERY</button>
+                <button className='saveToGalleryButton' onClick={onPublish}>{context.takenPhoto === null ? 'SAVED' : 'SAVE TO GALLERY'}</button>
             </div>
         )
     

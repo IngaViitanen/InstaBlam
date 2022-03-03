@@ -7,14 +7,13 @@ function CameraPage() {
 
 
     return (
-        <div>
+        <div className='cameraPage'>
             <ContextProvider>
             <div className='backToHomePage'>
 			<Link to="/">
 			<button className='backBtn'>{'<-- back to home page'}</button>
 			</Link>
 			</div>
-            {/* <h1>Camera</h1> */}
             <Camera />
             </ContextProvider>
         </div>
