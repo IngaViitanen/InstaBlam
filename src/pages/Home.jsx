@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import '../App.css';
-import cameraLogo from './add-photo.png'
+import cameraLogo from '../images/add-photo.png'
 
 function Home() {
     return (

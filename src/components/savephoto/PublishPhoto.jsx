@@ -1,12 +1,10 @@
 import React, { useContext } from 'react'
-// import { useNavigate } from 'react-router-dom'
 import { Context } from '../../context/Context'
 import { nanoid } from 'nanoid'
 
 function PublishPhoto({ takenPhotoSrc }) {
 
     const [context, updateContext] = useContext(Context)
-    // const navigate = useNavigate()
 
     
     const takenPhoto = {
@@ -27,17 +25,12 @@ function PublishPhoto({ takenPhotoSrc }) {
             savedPhotos: takenPhotoArray,
             takenPhoto: null
         })
-            
-        // navigate('/gallery')
-        // }
 	}
-        
-    
         
          
         return (
             <div >
-                <button className='saveToGalleryButton' onClick={onPublish}>SAVE</button>
+                <button className='saveToGalleryButton' onClick={onPublish}>SAVE TO GALLERY</button>
             </div>
         )
     

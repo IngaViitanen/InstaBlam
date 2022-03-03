@@ -1,6 +1,6 @@
 import React, { createContext, useState, useEffect } from 'react'
-import photoExample from './snoopy.jpeg'
-import photoExample2 from './charlieBrown.jpg'
+import boat from '../images/boat.jpg'
+import lapland from '../images/lapland.jpg'
 
 export const Context = createContext()
 
@@ -8,17 +8,17 @@ export const ContextProvider = ({children}) => {
     const [context, setContext] = useState({getLocation: 'unkown', location: 'unknown', takenPhoto: null, savedPhotos: [
         {
             id: 1,
-            src: photoExample,
-            alt: 'home logo',
+            src: boat,
+            alt: 'Photo by Laurent Gence on Unsplash',
             date: new Date().toLocaleDateString(),
-            location: {getLocation: 'California'}
+            location: {getLocation: 'Stockholm, Sweden'}
         }, 
         {
             id: 2,
-            src: photoExample2,
-            alt: 'logo',
+            src: lapland,
+            alt: 'Photo by Simon Smith on Unsplash',
             date: new Date().toLocaleDateString(),
-            location: {getLocation: 'California'}
+            location: {getLocation: 'Lapland, Finland'}
 
         }
     ] 

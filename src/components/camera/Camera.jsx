@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef, useContext } from 'react'
 import '../../App.css'
 import { Context } from '../../context/Context'
-import PublishPhoto from '../gallery/PublishPhoto'
+import PublishPhoto from '../savephoto/PublishPhoto'
 import Location from '../location/Location'
 
 const Camera = () => {
@@ -99,6 +99,11 @@ const Camera = () => {
 
 	return (
 		<div className="videoContainer">
+			{/* <div>
+			<Link to="/">
+			<button>{'<-- back to home page'}</button>
+			</Link>
+			</div> */}
 		
 		{canUseMd ? <video ref={videoRef}></video> : null}
 			<div className='buttons-grid'>
@@ -118,9 +123,11 @@ const Camera = () => {
 			</div>
             <div className={'result ' + (hasPhoto ? 'hasPhoto' : '')}>
                 <canvas ref={photoRef}></canvas>
-                <button className="closePhotoButton" onClick={closePhoto}>GO BACK</button>
+				<div className='closeSaveButtons'>
+                <button className="closePhotoButton" onClick={closePhoto}>TAKE NEW PHOTO</button>
 				<Location />
 				<PublishPhoto takenPhotoSrc={takenPhoto}/>
+				</div>
             </div>
 			<p> {statusMessage} </p>
 		</div>

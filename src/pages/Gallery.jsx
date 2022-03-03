@@ -1,6 +1,11 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useEffect } from 'react'
 import { Context } from '../context/Context'
-// import PublishPhoto from '../components/gallery/PublishPhoto'
+import Footer from '../components/Footer'
+import cameraLogo from '../images/add-photo.png'
+import { Link } from 'react-router-dom'
+import Camera from '../components/camera/Camera'
+import download from '../images/download.png'
+import garbage from '../images/garbage.png'
 
 function Gallery() {
     // const [location, setLocation] = useState(img.location.getLocation)
@@ -33,31 +38,45 @@ function Gallery() {
     
     return (
         <div >
-            <h1>Gallery</h1>
+            <h1>InstaBlam</h1>
             <div className='gallery'>
-            {allPhotos.map((img, index) => {
+            {allPhotos.map((image, index) => {
             return  <div className='card'>
                     <div className='card-grid'>
                     <div className='card-flex'>
-                    <button onClick={() => deletePhoto(index)} className='deleteButton'>X</button>
+                    <div className='delNdownBTN'>
+                        <a className='a-tag-wrap' href={image.src} download >
+                            <img 
+                            src={download} 
+                            alt="icons created by Debi Alpa Nugraha - Flaticon" 
+                            className='downloadButton' 
+                            height="25px"/></a>
+                        <img 
+                        onClick={() => deletePhoto(index)} 
+                        className='deleteButton'
+                        src={garbage}
+                        height="20px"
+                        />
+                    </div>
                     <img 
                         className='imageStyle' 
-                        src={( `${img.src}` )} 
-                        alt={( `${img.alt}` )} 
-                        key={img.id} 
-                        height="120px" 
+                        src={( `${image.src}` )} 
+                        alt={( `${image.alt}` )} 
+                        key={image.id} 
+                        height="200px" 
                     />
                     <div className='p-card-flex'>
-                    <p className='imgP'>Date: {img.date}</p>
-                    <p className='imgP'>Location: {(`${img.location.getLocation}`)}</p>
+                    <p className='imgP'>Date: {image.date}</p>
+                    <p className='imgP'>Location: {(`${image.location.getLocation}`)}</p>
                     </div>
-                    <a href={img.src} download ><button className='downloadButton'>DOWNLOAD</button></a>
                     </div>
                     </div>
                     </div>
             })}
             </div> 
-            {/* <PublishPhoto /> */}
+            {/* <Camera /> */}
+            {/* <Link to="/camera" className="cameraPageTag"><img src={cameraLogo} alt="take new photo logo" height="80px"/></Link> */}
+            <Footer />
         </div>
     )
 }
